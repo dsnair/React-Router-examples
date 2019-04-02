@@ -1,45 +1,52 @@
-# React Router Basic Nav
+# Client Side Routing w/ React Router v. 4
 
 Topics:
 
-* Single Page Applications
-* React Router V4 (react-router-dom)
-* Routing, declarative component based routing
-* Path and Component
+- React Router
+- Using Link and NavLink to navigate to specific routes
+- Passing Route Parameters
+- Passing props to components rendered by the Router
 
-## Project Description
+## Instructions
 
-* A starter pack project for all things React Router. Learn to set up a basic routing system within an application. Use this application to help guide your learning over the next couple of days.
-* **Note** that this project has already been boilerplated for you. There is no need to run any installation steps beyond `yarn install`.
+- **Fork** this repository, then clone your fork.
+- **NOTE** You have 2 servers that you will be running here, so read these instructions carefully.
+- **In the root of this directory**: Run `yarn install` to download dependencies.
+- Run the server using `yarn start` or `node server.js`. (Don't worry too much about this process, you'll get used to doing this and it will be explained more in the future).
+- In a separate terminal, `cd` into the `client` folder and run `yarn install` to download dependencies.
+- Still inside the `client` folder, run `yarn start` to run the client application.
+- Once your application is up and running on the client, you should see a browser window that looks like this at `localhost:3000`
+  ![Movies Home](https://ibin.co/3xhmmHVl9BKF.png)
 
-### Initialize Project
+### Part 1:
 
-* cd into the repository and run `yarn install`
-* run `yarn start`
+- [x] Wrap your app with `BrowserRouter`.
+- [x] Inside your App file, add two routes.
+  - one route for `/` that loads the `MovieList` component.
+  - one route that will take an `id` parameter after`/movies/` (ex: `/movies/2`, `/movies/3` where the id is dynamic). This route should load the `Movie` component.
 
-### Steps for implementing React Router
+### Part 2:
 
-* You'll notice we've already installed react-router-dom for you.
-* [x] `import` your BrowserRouter as Router inside your `index.js` file.
-* [x] Wrap your `<App />` component that you're passing to `ReactDOM.render()` with your new `Router` component.
-* Open up your chrome `REACT DEV TOOLS` and notice your app is now all wrapped in `BrowserRouter`.
-* Inside the `REACT DEV TOOLS`, expand `<BrowserRouter>` and highlight `<Router>` and notice that here is a `"history"` object on props and a `"match"` object on its state. These two objects are how all of our Router is going to work. 
+- [x] Make it so that the card in `MovieList` is a link, this should direct the user to the `/movies/{id of movie here}` URL, where `:id` is the id of the individual movie.
+- [x] When a user clicks on a movie card, they should be taken to `/movies/{id of movie here}` to see the details for the selected movie.
+- [x] You will need to modify line 13 of `Movie.js` in order to accept the correct id for the movie selected.
+- [x] Add functionality so that the `Home` button on the `SavedList` component navigates back to home.
+- [x] You should now be able to navigate back-and-forth between the individual movies and the home screen.
 
-### Steps for "Declaring" your routes
+## Stretch Goals.
 
-* [x] Inside of your `App.js` file, `import { Route } from 'react-router-dom';`
-* This is where we're going to declare and specify our router.
-* [x] Create three `<Route />` setting their `path` prop equal to `/`, `/about`, `/contact` with their respective components.
-* Be sure to incluce the `exact` prop on the root component for `/` to make sure that it's rendering the exact component and not all the other components.
-* [x] You should now be able to type `/`, `/about`, `/contact` after `localhost:PORT/` to see those components render.
+If you have completed Parts 1 & 2, feel free to move on to these stretch goals.
 
-### Steps for setting up your Navigation
+- Refactor so that our code is DRY.
 
-* [x] Inside of `Navigation.js`, `import { Link } from 'react-router-dom'`.
-* [x] Declare the `to` as the href on `<Link>` and specify the correct routes for your app to navigate towards.
-* [x] Head over to your app and start navigating. You should be able to see your URLs changing their paths as you go. Each path should display the proper component. 
+    You may notice that we are using essentially the same exact JSX code in the `Movie` component and the `MovieDetails` component in `MovieList.js`. Create a new component in `MovieCard.js` that returns this JSX code. Then remove the old code from `Movie` and `MovieDetails` and instead return the new `MovieCard` component.
 
-### Resources
+- Add `Save Movie` functionality.
 
-* [Code Sandbox from Lecture](https://codesandbox.io/s/n58oqgwmP)
-* [React Router 4 Quick Start Guide](https://reacttraining.com/react-router/web/guides/quick-start)
+    You will notice there is a 'Saved Movies' component that we are not currently using. In this step, you will add the functionality to save a movie. You will need to pass the `addToSavedList` function to the `Movie` component. Once you have done that, you will need to add a click handler to the save button.
+
+- [ ] Turn your Saved Movie list into `Link`s.
+
+    You will need to uncomment lines 29-39 in `Movie.js` to complete this. Your list of saved movies should be links to the movie itself. Study and understand what the `saveMovie` function is doing.
+
+- [ ] Turn your Saved Movie `Link`s into `NavLink`s.
