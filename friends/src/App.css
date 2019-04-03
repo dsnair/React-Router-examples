@@ -1,0 +1,25 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 600px;
+  margin: auto;
+}
+
+th,
+td {
+  border: 1px solid gainsboro;
+  height: 30px;
+  text-align: left;
+  padding: 5px 10px;
+}
+
+tr:nth-child(even) {
+  background-color: honeydew;
+}

@@ -16,24 +16,26 @@ class App extends Component {
 
   render() {
     return (
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Age</th>
-          </tr>
-        </tbody>
-        {this.state.friends.map(friend => (
-          <tbody key={friend.id}>
+      <div className="app">
+        <table>
+          <tbody>
             <tr>
-              <th>{friend.name}</th>
-              <th>{friend.email}</th>
-              <th>{friend.age}</th>
+              <th>Name</th>
+              <th>E-mail</th>
+              <th>Age</th>
             </tr>
           </tbody>
-        ))}
-      </table>
+          <tbody>
+            {this.state.friends.map(friend => (
+              <tr key={friend.id}>
+                <td>{friend.name}</td>
+                <td>{friend.email}</td>
+                <td>{friend.age}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
