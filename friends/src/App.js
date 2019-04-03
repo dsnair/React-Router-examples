@@ -7,11 +7,20 @@ class App extends Component {
     friends: []
   }
 
-  componentDidMount() {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => this.setState({ friends: response.data }))
-      .catch(error => console.error(error))
+  // componentDidMount() {
+  //   axios
+  //     .get('http://localhost:5000/friends')
+  //     .then(response => this.setState({ friends: response.data }))
+  //     .catch(error => console.error(error))
+  // }
+
+  async componentDidMount() {
+    try {
+      const response = await axios.get('http://localhost:5000/friends')
+      this.setState({ friends: response.data })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
@@ -23,7 +32,6 @@ class App extends Component {
               <th>Name</th>
               <th>E-mail</th>
               <th>Age</th>
-              {/* <th> </th> */}
             </tr>
           </tbody>
           <tbody>
@@ -33,7 +41,7 @@ class App extends Component {
                 <td>{friend.email}</td>
                 <td>{friend.age}</td>
                 <td className="deleteCol">
-                  <i class="fas fa-times" />
+                  <i className="fas fa-times" />
                 </td>
               </tr>
             ))}
