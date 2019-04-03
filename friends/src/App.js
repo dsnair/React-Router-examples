@@ -34,19 +34,37 @@ class App extends Component {
               <th>Age</th>
             </tr>
           </tbody>
+
           <tbody>
             {this.state.friends.map(friend => (
               <tr key={friend.id}>
                 <td>{friend.name}</td>
                 <td>{friend.email}</td>
                 <td>{friend.age}</td>
-                <td className="deleteCol">
+                <td className="deleteCell">
                   <i className="fas fa-times" />
                 </td>
               </tr>
             ))}
+            
+            <tr>
+              <td>
+                <input type="text" placeholder="Name" form="form" />
+              </td>
+              <td>
+                <input type="email" placeholder="E-mail" form="form" />
+              </td>
+              <td>
+                <input type="number" placeholder="Age" form="form" />
+              </td>
+              <td className="addCell">
+                <i className="fas fa-plus" />
+              </td>
+            </tr>
           </tbody>
         </table>
+
+        <form method="POST" id="form" />
       </div>
     )
   }

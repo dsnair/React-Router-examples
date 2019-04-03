@@ -28,7 +28,8 @@ th:nth-child(2) {
   width: 200px;
 }
 
-.deleteCol {
+.deleteCell,
+.addCell {
   border: 0;
   background-color: white;
 }
@@ -48,5 +49,19 @@ tr:hover .fa-times {
 
 .fa-times {
   color: darkgray;
+  font-size: 18px;
   display: none;
+}
+
+.fa-plus {
+  color: green;
+  font-size: 20px;
+}
+
+input {
+  border: 0;
+  height: 30px;
+  width: 100%;
+  font-size: 14px;
+  outline-color: lightgreen;
 }
