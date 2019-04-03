@@ -1,45 +1,41 @@
-# React Router Basic Nav
+# HTTP/AJAX
 
 Topics:
 
-* Single Page Applications
-* React Router V4 (react-router-dom)
-* Routing, declarative component based routing
-* Path and Component
+- `axios` package
+- AJAX
+- Promises
 
-## Project Description
+## Instructions
 
-* A starter pack project for all things React Router. Learn to set up a basic routing system within an application. Use this application to help guide your learning over the next couple of days.
-* **Note** that this project has already been boilerplated for you. There is no need to run any installation steps beyond `yarn install`.
+1.  Run `yarn install` or `npm install` inside the root directory of this project, then `yarn start` or `npm start` to start the server.
+1.  The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
+1.  In a separate terminal window, run `yarn create react-app friends` to create your starter React application.
+1.  Cd into `friends` and run `yarn add axios react-router-dom` or `npm install --save axios react-router-dom` to include those dependencies in your project. _You'll need react router for the stretch problems_
+1.  Cd into `friends` and run `yarn start` or `npm start` to fire up your React dev server.
+1.  Inside your React application, create a component to display the list of friends coming from the server.
+1.  Add a form to gather information about a new friend.
+1.  Add a button to save the new friend by making a `POST` request to the same endpoint listed above.
+1.  Each `friend` should have the properties listed below.
+1.  Implement `Update` and `Delete` functionality.
+    - For `update`, pass the friend id as a URL parameter and the information you want to update about the friend inside the body. You can build a new form in the UI for this, or, if you set it up correctly, reuse the form you made for the `POST` request.
+    - For `delete`, add a `delete` button, or an `x` icon to each friend that will delete the friend when you click it. In the request url, pass the friend id as a URL parameter.
 
-### Initialize Project
+For reference,
 
-* cd into the repository and run `yarn install`
-* run `yarn start`
+```js
+{
+  name: should be a string,
+  age: should be a number,
+  email: should be a string,
+}
+```
 
-### Steps for implementing React Router
+---
 
-* You'll notice we've already installed react-router-dom for you.
-* [x] `import` your BrowserRouter as Router inside your `index.js` file.
-* [x] Wrap your `<App />` component that you're passing to `ReactDOM.render()` with your new `Router` component.
-* Open up your chrome `REACT DEV TOOLS` and notice your app is now all wrapped in `BrowserRouter`.
-* Inside the `REACT DEV TOOLS`, expand `<BrowserRouter>` and highlight `<Router>` and notice that here is a `"history"` object on props and a `"match"` object on its state. These two objects are how all of our Router is going to work. 
+## Stretch Problems
 
-### Steps for "Declaring" your routes
-
-* [x] Inside of your `App.js` file, `import { Route } from 'react-router-dom';`
-* This is where we're going to declare and specify our router.
-* [x] Create three `<Route />` setting their `path` prop equal to `/`, `/about`, `/contact` with their respective components.
-* Be sure to incluce the `exact` prop on the root component for `/` to make sure that it's rendering the exact component and not all the other components.
-* [x] You should now be able to type `/`, `/about`, `/contact` after `localhost:PORT/` to see those components render.
-
-### Steps for setting up your Navigation
-
-* [x] Inside of `Navigation.js`, `import { Link } from 'react-router-dom'`.
-* [x] Declare the `to` as the href on `<Link>` and specify the correct routes for your app to navigate towards.
-* [x] Head over to your app and start navigating. You should be able to see your URLs changing their paths as you go. Each path should display the proper component. 
-
-### Resources
-
-* [Code Sandbox from Lecture](https://codesandbox.io/s/n58oqgwmP)
-* [React Router 4 Quick Start Guide](https://reacttraining.com/react-router/web/guides/quick-start)
+1.  Separate the list of friends and the new friend form into different components, and use the appropriate React Router to build routes for the proper aspects of your components to be revealed separately.
+1.  Style the friends list, the input field, and make everything look nice.
+1.  Expand the number of properties that you put on each friend object.
+1.  Feel free to remove the dummy data on the server or modify it in any way.
