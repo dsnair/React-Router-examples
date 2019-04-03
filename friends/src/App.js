@@ -23,6 +23,7 @@ class App extends Component {
               <th>Name</th>
               <th>E-mail</th>
               <th>Age</th>
+              {/* <th> </th> */}
             </tr>
           </tbody>
           <tbody>
@@ -31,6 +32,9 @@ class App extends Component {
                 <td>{friend.name}</td>
                 <td>{friend.email}</td>
                 <td>{friend.age}</td>
+                <td className="deleteCol">
+                  <i class="fas fa-times" />
+                </td>
               </tr>
             ))}
           </tbody>

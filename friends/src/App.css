@@ -20,6 +20,33 @@ td {
   padding: 5px 10px;
 }
 
+th:nth-child(odd) {
+  width: 100px;
+}
+
+th:nth-child(2) {
+  width: 200px;
+}
+
+.deleteCol {
+  border: 0;
+  background-color: white;
+}
+
 tr:nth-child(even) {
+  background-color: snow;
+}
+
+tr:hover {
   background-color: honeydew;
+  cursor: pointer;
+}
+
+tr:hover .fa-times {
+  display: block;
+}
+
+.fa-times {
+  color: darkgray;
+  display: none;
 }
