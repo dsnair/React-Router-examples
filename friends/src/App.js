@@ -26,7 +26,16 @@ class App extends Component {
     }
   }
 
-  onChange = e => {
+  deleteFriend = async id => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/friends/${id}`)
+      this.setState({ friends: response.data })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  onAdd = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
@@ -53,10 +62,23 @@ class App extends Component {
     }
   }
 
-  deleteFriend = async id => {
+  onUpdate = index => e => {
+    const newFriend = [...this.state.friends]
+    newFriend.splice(index, 1, {
+      ...newFriend[index],
+      [e.target.name]: e.target.value
+    })
+    this.setState({
+      friends: newFriend
+    })
+  }
+
+  updateFriend = async (id, index) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/friends/${id}`)
-      this.setState({ friends: response.data })
+      await axios.put(
+        `http://localhost:5000/friends/${id}`,
+        this.state.friends[index]
+      )
     } catch (error) {
       console.error(error)
     }
@@ -75,12 +97,40 @@ class App extends Component {
           </tbody>
 
           <tbody>
-            {this.state.friends.map(friend => (
+            {this.state.friends.map((friend, index) => (
               <tr key={friend.id}>
-                <td>{friend.name}</td>
-                <td>{friend.email}</td>
-                <td>{friend.age}</td>
-                <td className="deleteCell">
+                <td>
+                  <input
+                    onChange={this.onUpdate(index)}
+                    value={friend.name}
+                    type="text"
+                    placeholder="Name"
+                    name="name"
+                  />
+                </td>
+                <td>
+                  <input
+                    onChange={this.onUpdate(index)}
+                    value={friend.email}
+                    type="email"
+                    placeholder="E-mail"
+                    name="email"
+                  />
+                </td>
+                <td>
+                  <input
+                    onChange={this.onUpdate(index)}
+                    value={friend.age}
+                    type="number"
+                    placeholder="Age"
+                    name="age"
+                  />
+                </td>
+                <td className="editDeleteCell">
+                  <i
+                    className="fas fa-pen"
+                    onClick={() => this.updateFriend(friend.id, index)}
+                  />
                   <i
                     className="fas fa-times"
                     onClick={() => this.deleteFriend(friend.id)}
@@ -92,7 +142,7 @@ class App extends Component {
             <tr>
               <td>
                 <input
-                  onChange={this.onChange}
+                  onChange={this.onAdd}
                   value={this.state.name}
                   type="text"
                   placeholder="Name"
@@ -101,7 +151,7 @@ class App extends Component {
               </td>
               <td>
                 <input
-                  onChange={this.onChange}
+                  onChange={this.onAdd}
                   value={this.state.email}
                   type="email"
                   placeholder="E-mail"
@@ -110,7 +160,7 @@ class App extends Component {
               </td>
               <td>
                 <input
-                  onChange={this.onChange}
+                  onChange={this.onAdd}
                   value={this.state.age}
                   type="number"
                   placeholder="Age"

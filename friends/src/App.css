@@ -6,6 +6,15 @@
   height: 800px;
 }
 
+input {
+  border: 0;
+  height: 30px;
+  width: 100%;
+  font-size: 14px;
+  outline-color: lightgreen;
+  font-family: 'Comfortaa', cursive;
+}
+
 table {
   border-collapse: collapse;
   width: 600px;
@@ -30,14 +39,8 @@ th:nth-child(2) {
   width: 250px;
 }
 
-.deleteCell,
-.addCell {
-  border: 0;
-  background-color: white;
-}
-
 tr:nth-child(even) {
-  background-color: snow;
+  background-color: whitesmoke;
 }
 
 tbody:nth-child(2) tr:hover {
@@ -45,26 +48,37 @@ tbody:nth-child(2) tr:hover {
   cursor: pointer;
 }
 
+.editDeleteCell,
+.addCell {
+  border: 0;
+  background-color: white;
+}
+
+.editDeleteCell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 tr:hover .fa-times {
   display: block;
 }
 
-.fa-times {
-  color: darkgray;
-  font-size: 18px;
-  display: none;
-}
-
-.fa-plus {
-  color: green;
+.fas {
   font-size: 20px;
 }
 
-input {
-  border: 0;
-  height: 30px;
-  width: 100%;
-  font-size: 14px;
-  outline-color: lightgreen;
-  font-family: 'Comfortaa', cursive;
+.fa-times {
+  color: hotpink;
+  display: none;
+}
+
+.fa-pen {
+  color: skyblue;
+  font-size: 18px;
+}
+
+.fa-plus {
+  color: forestgreen;
 }
