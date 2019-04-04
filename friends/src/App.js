@@ -53,6 +53,15 @@ class App extends Component {
     }
   }
 
+  deleteFriend = async id => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/friends/${id}`)
+      this.setState({ friends: response.data })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   render() {
     return (
       <div className="app">
@@ -72,7 +81,10 @@ class App extends Component {
                 <td>{friend.email}</td>
                 <td>{friend.age}</td>
                 <td className="deleteCell">
-                  <i className="fas fa-times" />
+                  <i
+                    className="fas fa-times"
+                    onClick={() => this.deleteFriend(friend.id)}
+                  />
                 </td>
               </tr>
             ))}
