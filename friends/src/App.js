@@ -4,7 +4,10 @@ import './App.css'
 
 class App extends Component {
   state = {
-    friends: []
+    friends: [],
+    name: '',
+    email: '',
+    age: ''
   }
 
   // componentDidMount() {
@@ -18,6 +21,33 @@ class App extends Component {
     try {
       const response = await axios.get('http://localhost:5000/friends')
       this.setState({ friends: response.data })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  addFriend = async () => {
+    const newFriend = {
+      id: this.state.friends.length + 1,
+      name: this.state.name,
+      email: this.state.email,
+      age: this.state.age
+    }
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/friends',
+        newFriend
+      )
+      this.setState({
+        friends: response.data,
+        name: '',
+        email: '',
+        age: ''
+      })
     } catch (error) {
       console.error(error)
     }
@@ -46,25 +76,41 @@ class App extends Component {
                 </td>
               </tr>
             ))}
-            
+
             <tr>
               <td>
-                <input type="text" placeholder="Name" form="form" />
+                <input
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                />
               </td>
               <td>
-                <input type="email" placeholder="E-mail" form="form" />
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  type="email"
+                  placeholder="E-mail"
+                  name="email"
+                />
               </td>
               <td>
-                <input type="number" placeholder="Age" form="form" />
+                <input
+                  onChange={this.onChange}
+                  value={this.state.age}
+                  type="number"
+                  placeholder="Age"
+                  name="age"
+                />
               </td>
               <td className="addCell">
-                <i className="fas fa-plus" />
+                <i className="fas fa-plus" onClick={this.addFriend} />
               </td>
             </tr>
           </tbody>
         </table>
-
-        <form method="POST" id="form" />
       </div>
     )
   }
