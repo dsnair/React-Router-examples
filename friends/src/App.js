@@ -40,6 +40,7 @@ class App extends Component {
   }
 
   addFriend = async () => {
+    if (!this.state.name || !this.state.email || !this.state.age) return
     const newFriend = {
       id: this.state.friends.length + 1,
       name: this.state.name,
